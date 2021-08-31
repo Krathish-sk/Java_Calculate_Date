@@ -1,0 +1,72 @@
+import java.util.Scanner;
+
+class Main 
+{
+    static class Date
+    {
+        int d,m,y;
+        public Date(int d,int m,int y)
+        {
+            this.d=d;
+            this.m = m;
+            this.y = y;
+        }
+    };
+    static int Month[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+    
+    static int CLY(Date d)
+    {
+        int years = d.y;
+        if(d.m<=2)
+        {
+            years--;
+        }
+        return years/4 - years/100 + years/400;
+    }
+    
+    static int CD(Date dt1,Date dt2)
+    {
+        int n1 = dt1.y*365 + dt1.d;
+        for(int i=0;i<dt1.m-1;i++)
+        {
+            n1 = n1 + Month[i];
+        }
+        n1 += CLY(dt1);
+        
+        int n2 = dt2.y*365 + dt2.d;
+        for(int i=0;i<dt2.m-1;i++)
+        {
+            n2 = n2 + Month[i];
+        }
+        n2 += CLY(dt2);
+        
+        return (n2-n1);
+    }
+    
+    public static void main(String[] args)
+    {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the 1st Calender info :-");
+        System.out.println("Enter the Date :-");
+        int d1 = in.nextInt();
+        System.out.println("Enter the month :-");
+        int m1 = in.nextInt();
+        System.out.println("Enter the year :-");
+        int y1 = in.nextInt();
+        System.out.println();
+        System.out.println("Enter the 2nd Calender info :-");
+        System.out.println("Enter the Date :-");
+        int d2 = in.nextInt();
+        System.out.println("Enter the month :-");
+        int m2 = in.nextInt();
+        System.out.println("Enter the year :-");
+        int y2 = in.nextInt();
+        
+        Date dt1 = new Date(d1,m1,y1);
+        Date dt2 = new Date(d2,m2,y2);
+        
+        System.out.println("The Difference is :- " + CD(dt1,dt2));
+    }
+    
+    
+}
